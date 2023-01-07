@@ -1,0 +1,28 @@
+{{ define "shorturls/short" }}
+{{ template "shared/header" .}}
+<div class="flex flex-col h-screen w-screen items-center justify-center">
+  <h1 class="mb-16 text-center drop-shadow-2xl font-extrabold text-7xl tracking-wider z-10">
+    Your short URL
+  </h1>
+  <a href="/u/{{ .Surl }}" class="clickable bg-purple-100 px-12 py-2 rounded-md text-purple-900" target="_blank"
+    rel="noopener noreferrer">
+    <i class="fa-solid fa-rocket ml-1"></i>
+    Open short link
+  </a>
+</div>
+<div class="px-32 py-12 grid grid-flow-row grid-cols-5 gap-10 text-purple-900">
+  <a href="/short-urls" class=" bg-purple-100 p-2 rounded-md clickable">
+    <i class="fa-solid fa-link my-2"></i>
+    Shorten a URL
+  </a>
+  <a href="/quick-share" class=" bg-purple-100 p-2 rounded-md clickable">
+    <i class="fa-solid fa-share my-2"></i>
+    Quickly share a file
+  </a>
+  <a href="/about" class=" bg-purple-100 p-2 rounded-md clickable">
+    <i class="fa-solid fa-info my-2"></i>
+    About Share Space
+  </a>
+</div>
+{{ template "shared/footer" }}
+{{ end }}
