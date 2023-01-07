@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* * :not(svg, path){
+  outline: solid greenyellow 2px;
+} */
+
 body {
   font-family: "Inter";
+}
+
+a {
+  @apply flex flex-col items-center justify-center
+}
+
+a > i {
+  @apply text-5xl
 }
