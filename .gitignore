@@ -1,0 +1,5 @@
+client/.parcel-cache
+client/node_modules
+
+public/js
+public/site.css
