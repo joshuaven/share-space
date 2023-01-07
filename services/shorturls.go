@@ -17,6 +17,7 @@ type ShortUrlService struct {
 
 type IShortUrlService interface {
 	AddItem(models.ShortUrlItem) error
+	GetItem(string, *models.ShortUrlItem) (error)
 }
 
 func (s *ShortUrlService) AddItem(newItem models.ShortUrlItem) error {
@@ -36,6 +37,29 @@ func (s *ShortUrlService) AddItem(newItem models.ShortUrlItem) error {
 	}
 
 	return nil;
+}
+
+func (s *ShortUrlService) GetItem(urlId string, item *models.ShortUrlItem) (error) {
+	query := &dynamodb.GetItemInput{
+		TableName: aws.String("ShortUrls"),
+		Key: map[string]*dynamodb.AttributeValue{
+			"UrlId": {
+				S: aws.String(urlId),
+			},
+		},
+	}
+
+	res, err := s.DynamoDb.GetItem(query)
+	if err != nil {
+		return err
+	}
+
+	err = dynamodbattribute.UnmarshalMap(res.Item, item)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func CreateShortUrlService() IShortUrlService {

@@ -47,6 +47,23 @@ func PostUrl(ctx *gin.Context) {
 	})
 }
 
+func OpenShortUrl(ctx *gin.Context) {
+	urlId := ctx.Param("urlid")
+
+	sus := services.CreateShortUrlService()
+
+	var item models.ShortUrlItem
+
+	if err := sus.GetItem(urlId, &item); err != nil {
+		ctx.JSON(500, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Redirect(301, item.OriginalUrl)
+}
+
 func randString(n int) string {
 		var src = rand.NewSource(time.Now().UnixNano())
     b := make([]byte, n)
