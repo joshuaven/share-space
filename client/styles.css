@@ -6,6 +6,10 @@
   outline: solid greenyellow 2px;
 } */
 
+.clickable {
+  @apply transition-all drop-shadow-sm hover:drop-shadow-2xl 
+}
+
 body {
   font-family: "Inter";
 }

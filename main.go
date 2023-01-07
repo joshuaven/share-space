@@ -12,5 +12,6 @@ func main() {
 	config.ServeTemplates(r)
 
 	r.GET("/", handlers.Home)
+	r.GET("/short-urls", handlers.GetShortUrl)
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
