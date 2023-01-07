@@ -22,10 +22,10 @@ jobs:
         node-version: 16.x
         
     - name: Install Nodejs Dependencies
-      run: npm install
+      run: cd client && npm install
       
     - name: Build assets
-      run: npm run build
+      run: cd client && npm run build
 
     - name: Set up Go
       uses: actions/setup-go@v3
