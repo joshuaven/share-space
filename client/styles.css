@@ -6,18 +6,30 @@
   outline: solid greenyellow 2px;
 } */
 
+h1 {
+  -webkit-text-stroke: 3px black;
+}
+
 .clickable {
-  @apply transition-all drop-shadow-sm hover:drop-shadow-2xl 
+  @apply border-2 border-black border-solid bg-purple-100 p-2 rounded-md  transition-all drop-shadow-sm hover:drop-shadow-2xl 
 }
 
 body {
-  font-family: "Inter";
+  font-family: "Poppins";
 }
 
 a {
   @apply flex flex-col items-center justify-center
 }
 
-a > i {
-  @apply text-5xl
+.clickable > svg {
+  @apply w-16 h-16 my-2 fill-current text-purple-800 stroke-[15] stroke-black antialiased
+}
+
+.clickable > span {
+  @apply text-black font-semibold
+}
+
+input {
+  @apply rounded-md p-2 bg-purple-300 mb-3 border-2 border-solid border-black w-full text-black font-semibold
 }

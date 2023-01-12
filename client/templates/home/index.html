@@ -67,21 +67,10 @@
 			</g>
 		</g>
 	</svg>
-	<h1 class="text-center drop-shadow-2xl font-extrabold text-7xl tracking-wider z-10">Share Space</h1>
+	<h1 class="text-center drop-shadow-2xl font-extrabold text-7xl tracking-wider z-10">
+		Share
+		Space</h1>
 </div>
-<div class="px-32 py-12 grid grid-flow-row grid-cols-5 gap-10 text-purple-900">
-	<a href="/short-urls" class="transition-all bg-purple-100 p-2 rounded-md drop-shadow-sm hover:drop-shadow-2xl ">
-		<i class="fa-solid fa-link my-2"></i>
-		Shorten a URL
-	</a>
-	<a href="/quick-share" class="transition-all bg-purple-100 p-2 rounded-md drop-shadow-sm hover:drop-shadow-2xl ">
-		<i class="fa-solid fa-share my-2"></i>
-		Quickly share a file
-	</a>
-	<a href="/about" class="transition-all bg-purple-100 p-2 rounded-md drop-shadow-sm hover:drop-shadow-2xl ">
-		<i class="fa-solid fa-info my-2"></i>
-		About Share Space
-	</a>
-</div>
+{{ template "shared/links" }}
 {{ template "shared/footer" }}
 {{ end }}
