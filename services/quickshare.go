@@ -11,40 +11,40 @@ import (
 	"github.com/joshuaven/share-space/models"
 )
 
-type ShortUrlService struct {
+type QuickShareService struct {
 	DynamoDb *dynamodb.DynamoDB
 }
 
-type IShortUrlService interface {
-	AddItem(models.ShortUrlItem) error
-	GetItem(string, *models.ShortUrlItem) (error)
+type IQuickShareService interface {
+	AddItem(models.QSItem) error
+	GetItem(string, *models.QSItem) error
 }
 
-func (s *ShortUrlService) AddItem(newItem models.ShortUrlItem) error {
+func (s *QuickShareService) AddItem(newItem models.QSItem) error {
 	av, err := dynamodbattribute.MarshalMap(newItem)
 	if err != nil {
-			return err
+		return err
 	}
 
 	input := &dynamodb.PutItemInput{
-			Item:      av,
-			TableName: aws.String(os.Getenv("SHORTURL_DB")),
+		Item: av,
+		TableName: aws.String(os.Getenv("FILE_DB")),
 	}
 
 	_, err = s.DynamoDb.PutItem(input)
 	if err != nil {
-			return err
+		return err
 	}
 
-	return nil;
+	return nil
 }
 
-func (s *ShortUrlService) GetItem(urlId string, item *models.ShortUrlItem) (error) {
+func (s *QuickShareService) GetItem(fileId string, item *models.QSItem) (error) {
 	query := &dynamodb.GetItemInput{
-		TableName: aws.String(os.Getenv("SHORTURL_DB")),
+		TableName: aws.String(os.Getenv("FILE_DB")),
 		Key: map[string]*dynamodb.AttributeValue{
-			"UrlId": {
-				S: aws.String(urlId),
+			"FileId": {
+				S: aws.String(fileId),	
 			},
 		},
 	}
@@ -62,9 +62,9 @@ func (s *ShortUrlService) GetItem(urlId string, item *models.ShortUrlItem) (erro
 	return nil
 }
 
-func CreateShortUrlService() IShortUrlService {
+func CreateQuickShareService() IQuickShareService {
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:      aws.String("ap-southeast-1"),
+		Region: aws.String("ap-southeast-1"),
 		Credentials: credentials.NewStaticCredentials(
 			os.Getenv("AWS_ACCESS_KEY_ID"),
 			os.Getenv("AWS_SECRET_ACCESS_KEY"),
@@ -72,7 +72,7 @@ func CreateShortUrlService() IShortUrlService {
 		),
 	}))
 
-	service := &ShortUrlService{
+	service := &QuickShareService{
 		DynamoDb: dynamodb.New(sess),
 	}
 
