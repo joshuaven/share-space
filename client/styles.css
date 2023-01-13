@@ -8,6 +8,7 @@
 
 h1 {
   -webkit-text-stroke: 3px black;
+  @apply mb-16 text-center drop-shadow-2xl font-extrabold text-7xl tracking-wider z-10
 }
 
 .clickable {

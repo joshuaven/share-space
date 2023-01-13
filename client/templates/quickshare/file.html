@@ -1,0 +1,9 @@
+{{ define "quickshare/file" }}
+{{ template "shared/header" .}}
+<div class="flex flex-col h-screen w-screen items-center justify-center">
+  <h1>{{ .Title }}</h1>
+  <img src="/preview/{{ .Item }}" alt="preview">
+</div>
+{{ template "shared/links" }}
+{{ template "shared/footer" }}
+{{ end }}
