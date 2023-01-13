@@ -1,5 +1,8 @@
 {{ define "shared/footer" }}
 </main>
+{{ range $script := .Scripts }}
+<script src="{{ . }}"></script>
+{{ end }}
 </body>
 
 </html>

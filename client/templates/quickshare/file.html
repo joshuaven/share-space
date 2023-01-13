@@ -1,9 +1,38 @@
 {{ define "quickshare/file" }}
 {{ template "shared/header" .}}
 <div class="flex flex-col h-screen w-screen items-center justify-center">
-  <h1>{{ .Title }}</h1>
-  <img src="/preview/{{ .Item }}" alt="preview">
+  <h1>{{ .Item.FileId }}</h1>
+  <div class="flex flex-row items-center justify-center">
+    <div class="w-1/2 mr-8">
+      <img class="w-96" src="/preview/{{ .Preview }}" alt="preview">
+    </div>
+    <div class="w-1/2">
+      <ul>
+        <li class="flex flex-col mb-3">
+          <span class="text-sm font-semibold">File Name</span>
+          <span class="text-lg font-bold">{{ .Item.FileName }}</span>
+        </li>
+        <li class="flex flex-col mb-3">
+          <span class="text-sm font-semibold">File Type</span>
+          <span class="text-lg font-bold">{{ .Item.FileType }}</span>
+        </li>
+        <li class="flex flex-col mb-3">
+          <span class="text-sm font-semibold">Date Added</span>
+          <span class="text-lg font-bold">{{ .Item.DateAdded.Format "02 Jan 06 15:04 MST" }}</span>
+        </li>
+        <li class="flex flex-row mb-3">
+          <button id="clipboard" title="copy to clipboard" class="file-actions">
+            <i class="fa-solid fa-clipboard"></i>
+          </button>
+          <a target="_blank" href="/qs/{{ .Item.FileId }}?action=download" title="download"
+            class="file-actions text-center">
+            <i class="fa-solid fa-download"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 {{ template "shared/links" }}
-{{ template "shared/footer" }}
+{{ template "shared/footer" .}}
 {{ end }}

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/joshuaven/share-space/config"
@@ -15,6 +17,7 @@ func main() {
 	r.MaxMultipartMemory = 5 << 20
 	config.ServeStaticContents(r)
 	config.ServeTemplates(r)
+	config.ConfigureErrors(r)
 
 	r.GET("/", handlers.Home)
 
@@ -25,7 +28,8 @@ func main() {
 	r.GET("/quick-share", handlers.GetQuickShare)
 	r.POST("/quick-share", handlers.PostQuickShare)
 	r.GET("/qs/:fileid", handlers.GetQSItem)
-	r.GET("/preview/:fileid", handlers.PreviewQSItem)
+	r.GET("/preview/:filename", handlers.PreviewQSItem)
 	
-	r.Run() // listen and serve on 0.0.0.0:8080
+	port := os.Getenv("PORT")
+	r.Run(":" + port) // listen and serve on 0.0.0.0:8080
 }
