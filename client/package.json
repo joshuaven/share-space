@@ -11,8 +11,8 @@
     "build": "npm run styles:build && npm run scripts:build",
     "styles:watch": "tailwindcss -i ./styles.css -o ../public/site.css --watch",
     "styles:build": "tailwindcss -i ./styles.css -o ../public/site.css --minify",
-    "scripts:watch": "parcel watch scripts/**/*.ts",
-    "scripts:build": "parcel build --no-source-maps scripts/**/*.ts"
+    "scripts:watch": "parcel watch scripts/**/*.{ts,tsx}",
+    "scripts:build": "parcel build --no-source-maps scripts/**/*.{ts,tsx}"
   },
   "targets": {
     "default": {

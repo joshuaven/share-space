@@ -52,6 +52,7 @@ func PostQuickShare(ctx *gin.Context) {
 
 func GetQSItem(ctx *gin.Context) {
 	fileId := ctx.Param("fileid")
+	queryParam := ctx.Query("action")
 
 	service := services.CreateQuickShareService()
 
@@ -72,11 +73,20 @@ func GetQSItem(ctx *gin.Context) {
 		return
 	}
 
+	if queryParam == "download" {
+		ctx.Writer.Header().Set("Content-Disposition", "attachment; filename=" + item.FileName)
+		ctx.File(fileLoc)
+		return
+	}
+
 	ctx.HTML(200, "quickshare/file", qsItemPage {
 		Title: fileId,
 		Timestamp: time.Now().UnixMilli(),
 		Item: item,
 		Preview: filename,
+		Scripts: []models.Script{
+			models.Script("/assets/js/qs/index.js").WithTimestamp(),
+		},
 	})
 }
 

@@ -13,4 +13,5 @@ type qsItemPage struct {
 	Timestamp int64
 	Item models.QSItem
 	Preview string
+	Scripts []models.Script
 }
