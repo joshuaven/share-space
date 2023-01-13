@@ -28,7 +28,7 @@ func main() {
 	r.GET("/quick-share", handlers.GetQuickShare)
 	r.POST("/quick-share", handlers.PostQuickShare)
 	r.GET("/qs/:fileid", handlers.GetQSItem)
-	r.GET("/preview/:fileid", handlers.PreviewQSItem)
+	r.GET("/preview/:filename", handlers.PreviewQSItem)
 	
 	port := os.Getenv("PORT")
 	r.Run(":" + port) // listen and serve on 0.0.0.0:8080

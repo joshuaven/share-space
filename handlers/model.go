@@ -1,10 +1,6 @@
 package handlers
 
-type pageModel struct {
-	Title string
-	Timestamp int64
-	Error string
-}
+import "github.com/joshuaven/share-space/models"
 
 type shortUrlPage struct {
 	Title string
@@ -15,5 +11,6 @@ type shortUrlPage struct {
 type qsItemPage struct {
 	Title string
 	Timestamp int64
-	Item string
+	Item models.QSItem
+	Preview string
 }

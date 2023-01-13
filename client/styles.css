@@ -34,3 +34,11 @@ a {
 input {
   @apply rounded-md p-2 bg-purple-300 mb-3 border-2 border-solid border-black w-full text-black font-semibold
 }
+
+button {
+ @apply bg-white rounded-md drop-shadow-sm p-1 mr-2 stroke-[15] stroke-black
+}
+
+button > svg {
+  @apply w-8 h-8 fill-current text-purple-800
+}

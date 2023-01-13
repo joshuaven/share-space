@@ -13,7 +13,7 @@ import (
 )
 
 func GetShortUrl(ctx *gin.Context) {
-	ctx.HTML(200, "shorturls/index", pageModel {
+	ctx.HTML(200, "shorturls/index", models.PageModel {
 		Title: "Short URL",
 		Timestamp: time.Now().UnixMilli(),
 	})
