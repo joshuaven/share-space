@@ -20,8 +20,6 @@ type IQuickShareService interface {
 	GetItem(string, *models.QSItem) error
 }
 
-const table = "quick_share_items"
-
 func (s *QuickShareService) AddItem(newItem models.QSItem) error {
 	av, err := dynamodbattribute.MarshalMap(newItem)
 	if err != nil {
@@ -30,7 +28,7 @@ func (s *QuickShareService) AddItem(newItem models.QSItem) error {
 
 	input := &dynamodb.PutItemInput{
 		Item: av,
-		TableName: aws.String(table),
+		TableName: aws.String(os.Getenv("FILE_DB")),
 	}
 
 	_, err = s.DynamoDb.PutItem(input)
@@ -43,7 +41,7 @@ func (s *QuickShareService) AddItem(newItem models.QSItem) error {
 
 func (s *QuickShareService) GetItem(fileId string, item *models.QSItem) (error) {
 	query := &dynamodb.GetItemInput{
-		TableName: aws.String(table),
+		TableName: aws.String(os.Getenv("FILE_DB")),
 		Key: map[string]*dynamodb.AttributeValue{
 			"FileId": {
 				S: aws.String(fileId),	

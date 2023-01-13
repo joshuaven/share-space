@@ -28,7 +28,7 @@ func (s *ShortUrlService) AddItem(newItem models.ShortUrlItem) error {
 
 	input := &dynamodb.PutItemInput{
 			Item:      av,
-			TableName: aws.String("ShortUrls"),
+			TableName: aws.String(os.Getenv("SHORTURL_DB")),
 	}
 
 	_, err = s.DynamoDb.PutItem(input)
@@ -41,7 +41,7 @@ func (s *ShortUrlService) AddItem(newItem models.ShortUrlItem) error {
 
 func (s *ShortUrlService) GetItem(urlId string, item *models.ShortUrlItem) (error) {
 	query := &dynamodb.GetItemInput{
-		TableName: aws.String("ShortUrls"),
+		TableName: aws.String(os.Getenv("SHORTURL_DB")),
 		Key: map[string]*dynamodb.AttributeValue{
 			"UrlId": {
 				S: aws.String(urlId),
