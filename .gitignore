@@ -4,3 +4,4 @@ client/node_modules
 public/js
 public/site.css
 .env
+__debug_bin

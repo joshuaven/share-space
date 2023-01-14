@@ -67,7 +67,7 @@ func GetQSItem(ctx *gin.Context) {
 	filename := fileId + filepath.Ext(item.FileName)
 	fileLoc := tmpPath + "/" + filename
 
-		_, err := os.Stat(fileLoc)
+	_, err := os.Stat(fileLoc)
 	if os.IsNotExist(err) {
 		ctx.Error(statuses.ErrNotFound)
 		return
