@@ -13,6 +13,8 @@ func Errors(ctx *gin.Context) {
 
 	lastErr := ctx.Errors.Last()
 
+	if lastErr == nil { return }
+
 	if errors.Is(ErrNotFound, lastErr.Err) {
 		ctx.HTML(404, "shared/notfound", models.PageModel {
 			Title: "Not found",
