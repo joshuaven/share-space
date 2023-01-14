@@ -8,7 +8,7 @@ import (
 	"github.com/joshuaven/share-space/models"
 )
 
-func NotFound(ctx *gin.Context) {
+func Errors(ctx *gin.Context) {
 	ctx.Next()
 
 	lastErr := ctx.Errors.Last()
@@ -20,13 +20,8 @@ func NotFound(ctx *gin.Context) {
 			Title: "Not found",
 			Timestamp: time.Now().UnixMilli(),
 		})
+		return
 	}
-}
-
-func AppCrash(ctx *gin.Context) {
-	ctx.Next()
-
-	lastErr := ctx.Errors.Last()
 
 	if lastErr != nil {
 		ctx.HTML(404, "shared/crash", models.PageModel {

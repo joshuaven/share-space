@@ -6,5 +6,5 @@ import (
 )
 
 func ConfigureErrors(engine *gin.Engine) {
-	engine.Use(statuses.NotFound, statuses.AppCrash)
+	engine.Use(statuses.Errors)
 }
